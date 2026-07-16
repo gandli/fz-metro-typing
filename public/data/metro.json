@@ -1,0 +1,1499 @@
+{
+  "lines": [
+    {
+      "id": "L1",
+      "lineId": "L1",
+      "lineName": "1 号线",
+      "color": "#e60039",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "L1-01",
+          "stationId": "L1-01",
+          "sequence": 1,
+          "nameZh": "象峰",
+          "nameEn": "Xiangfeng",
+          "target": "xiang feng",
+          "lat": 26.1452618,
+          "lon": 119.3239371
+        },
+        {
+          "id": "L1-02",
+          "stationId": "L1-02",
+          "sequence": 2,
+          "nameZh": "秀山",
+          "nameEn": "Xiushan",
+          "target": "xiu shan",
+          "lat": 26.1372366,
+          "lon": 119.3165217
+        },
+        {
+          "id": "L1-03",
+          "stationId": "L1-03",
+          "sequence": 3,
+          "nameZh": "罗汉山",
+          "nameEn": "Luohanshan",
+          "target": "luo han shan",
+          "lat": 26.1303329,
+          "lon": 119.312861
+        },
+        {
+          "id": "L1-04",
+          "stationId": "L1-04",
+          "sequence": 4,
+          "nameZh": "福州火车站",
+          "nameEn": "Fuzhou Railway",
+          "target": "fu zhou huo che zhan",
+          "lat": 26.1156661,
+          "lon": 119.3135403
+        },
+        {
+          "id": "L1-05",
+          "stationId": "L1-05",
+          "sequence": 5,
+          "nameZh": "斗门",
+          "nameEn": "Doumen",
+          "target": "dou men",
+          "lat": 26.1070185,
+          "lon": 119.3085792
+        },
+        {
+          "id": "L1-06",
+          "stationId": "L1-06",
+          "sequence": 6,
+          "nameZh": "树兜",
+          "nameEn": "Shudou",
+          "target": "shu dou",
+          "lat": 26.105517,
+          "lon": 119.3022234
+        },
+        {
+          "id": "L1-07",
+          "stationId": "L1-07",
+          "sequence": 7,
+          "nameZh": "屏山",
+          "nameEn": "Pingshan",
+          "target": "ping shan",
+          "lat": 26.0993849,
+          "lon": 119.2922902
+        },
+        {
+          "id": "L1-08",
+          "stationId": "L1-08",
+          "sequence": 8,
+          "nameZh": "东街口",
+          "nameEn": "Dongjiekou",
+          "target": "dong jie kou",
+          "lat": 26.0890097,
+          "lon": 119.2945898
+        },
+        {
+          "id": "L1-09",
+          "stationId": "L1-09",
+          "sequence": 9,
+          "nameZh": "南门兜",
+          "nameEn": "Nanmendou",
+          "target": "nan men dou",
+          "lat": 26.0793338,
+          "lon": 119.2973556
+        },
+        {
+          "id": "L1-10",
+          "stationId": "L1-10",
+          "sequence": 10,
+          "nameZh": "茶亭",
+          "nameEn": "Chating",
+          "target": "cha ting",
+          "lat": 26.0721752,
+          "lon": 119.2996521
+        },
+        {
+          "id": "L1-11",
+          "stationId": "L1-11",
+          "sequence": 11,
+          "nameZh": "达道",
+          "nameEn": "Dadao",
+          "target": "da dao",
+          "lat": 26.0605114,
+          "lon": 119.3048944
+        },
+        {
+          "id": "L1-12",
+          "stationId": "L1-12",
+          "sequence": 12,
+          "nameZh": "上藤",
+          "nameEn": "Shangteng",
+          "target": "shang teng",
+          "lat": 26.0467195,
+          "lon": 119.3158624
+        },
+        {
+          "id": "L1-13",
+          "stationId": "L1-13",
+          "sequence": 13,
+          "nameZh": "三叉街",
+          "nameEn": "Sanchajie",
+          "target": "san cha jie",
+          "lat": 26.0391486,
+          "lon": 119.3206535
+        },
+        {
+          "id": "L1-14",
+          "stationId": "L1-14",
+          "sequence": 14,
+          "nameZh": "白湖亭",
+          "nameEn": "Baihuting",
+          "target": "bai hu ting",
+          "lat": 26.028811,
+          "lon": 119.3305726
+        },
+        {
+          "id": "L1-15",
+          "stationId": "L1-15",
+          "sequence": 15,
+          "nameZh": "葫芦阵",
+          "nameEn": "Huluzhen",
+          "target": "hu lu zhen",
+          "lat": 26.0198922,
+          "lon": 119.3388105
+        },
+        {
+          "id": "L1-16",
+          "stationId": "L1-16",
+          "sequence": 16,
+          "nameZh": "黄山",
+          "nameEn": "Huangshan",
+          "target": "huang shan",
+          "lat": 26.0134119,
+          "lon": 119.3436313
+        },
+        {
+          "id": "L1-17",
+          "stationId": "L1-17",
+          "sequence": 17,
+          "nameZh": "排下",
+          "nameEn": "Paixia",
+          "target": "pai xia",
+          "lat": 26.0044083,
+          "lon": 119.349201
+        },
+        {
+          "id": "L1-18",
+          "stationId": "L1-18",
+          "sequence": 18,
+          "nameZh": "城门",
+          "nameEn": "Chengmen",
+          "target": "cheng men",
+          "lat": 25.9991731,
+          "lon": 119.3552824
+        },
+        {
+          "id": "L1-19",
+          "stationId": "L1-19",
+          "sequence": 19,
+          "nameZh": "三角埕",
+          "nameEn": "Sanjiaocheng",
+          "target": "san jiao cheng",
+          "lat": 25.9937663,
+          "lon": 119.3642473
+        },
+        {
+          "id": "L1-20",
+          "stationId": "L1-20",
+          "sequence": 20,
+          "nameZh": "胪雷",
+          "nameEn": "Lulei",
+          "target": "lu lei",
+          "lat": 25.9875052,
+          "lon": 119.3749941
+        },
+        {
+          "id": "L1-21",
+          "stationId": "L1-21",
+          "sequence": 21,
+          "nameZh": "福州火车南站",
+          "nameEn": "Fuzhou South Railway",
+          "target": "fu zhou huo che nan zhan",
+          "lat": 25.9881828,
+          "lon": 119.3838132
+        },
+        {
+          "id": "L1-22",
+          "stationId": "L1-22",
+          "sequence": 22,
+          "nameZh": "安平",
+          "nameEn": "Anping",
+          "target": "an ping",
+          "lat": 25.9952273,
+          "lon": 119.3969668
+        },
+        {
+          "id": "L1-23",
+          "stationId": "L1-23",
+          "sequence": 23,
+          "nameZh": "梁厝",
+          "nameEn": "Liangcuo",
+          "target": "liang cuo",
+          "lat": 25.9983401,
+          "lon": 119.405529
+        },
+        {
+          "id": "L1-24",
+          "stationId": "L1-24",
+          "sequence": 24,
+          "nameZh": "下洋",
+          "nameEn": "Xiayang",
+          "target": "xia yang",
+          "lat": 25.9904097,
+          "lon": 119.411623
+        },
+        {
+          "id": "L1-25",
+          "stationId": "L1-25",
+          "sequence": 25,
+          "nameZh": "三江口",
+          "nameEn": "Sanjiangkou",
+          "target": "san jiang kou",
+          "lat": 25.9798671,
+          "lon": 119.4150115
+        }
+      ],
+      "segments": [
+        [
+          "L1-01",
+          "L1-02",
+          "L1-03",
+          "L1-04",
+          "L1-05",
+          "L1-06",
+          "L1-07",
+          "L1-08",
+          "L1-09",
+          "L1-10",
+          "L1-11",
+          "L1-12",
+          "L1-13",
+          "L1-14",
+          "L1-15",
+          "L1-16",
+          "L1-17",
+          "L1-18",
+          "L1-19",
+          "L1-20",
+          "L1-21",
+          "L1-22",
+          "L1-23",
+          "L1-24",
+          "L1-25"
+        ]
+      ],
+      "gameStationIds": [
+        "L1-01",
+        "L1-02",
+        "L1-03",
+        "L1-04",
+        "L1-05",
+        "L1-06",
+        "L1-07",
+        "L1-08",
+        "L1-09",
+        "L1-10",
+        "L1-11",
+        "L1-12",
+        "L1-13",
+        "L1-14",
+        "L1-15",
+        "L1-16",
+        "L1-17",
+        "L1-18",
+        "L1-19",
+        "L1-20",
+        "L1-21",
+        "L1-22",
+        "L1-23",
+        "L1-24",
+        "L1-25"
+      ]
+    },
+    {
+      "id": "L2",
+      "lineId": "L2",
+      "lineName": "2 号线",
+      "color": "#00a651",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "L2-01",
+          "stationId": "L2-01",
+          "sequence": 1,
+          "nameZh": "苏洋",
+          "nameEn": "Suyang",
+          "target": "su yang",
+          "lat": 26.1062805,
+          "lon": 119.1468041
+        },
+        {
+          "id": "L2-02",
+          "stationId": "L2-02",
+          "sequence": 2,
+          "nameZh": "沙堤",
+          "nameEn": "Shadi",
+          "target": "sha di",
+          "lat": 26.0898228,
+          "lon": 119.167278
+        },
+        {
+          "id": "L2-03",
+          "stationId": "L2-03",
+          "sequence": 3,
+          "nameZh": "上街",
+          "nameEn": "Shangjie",
+          "target": "shang jie",
+          "lat": 26.0793626,
+          "lon": 119.1812648
+        },
+        {
+          "id": "L2-04",
+          "stationId": "L2-04",
+          "sequence": 4,
+          "nameZh": "金屿",
+          "nameEn": "Jinyu",
+          "target": "jin yu",
+          "lat": 26.070437,
+          "lon": 119.1954614
+        },
+        {
+          "id": "L2-05",
+          "stationId": "L2-05",
+          "sequence": 5,
+          "nameZh": "福州大学",
+          "nameEn": "Fuzhou University",
+          "target": "fu zhou da xue",
+          "lat": 26.0635577,
+          "lon": 119.1980949
+        },
+        {
+          "id": "L2-06",
+          "stationId": "L2-06",
+          "sequence": 6,
+          "nameZh": "董屿·福建师大",
+          "nameEn": "Dongyu / Fujian Normal University",
+          "target": "dong yu fu jian shi da",
+          "lat": 26.0430566,
+          "lon": 119.2037413
+        },
+        {
+          "id": "L2-07",
+          "stationId": "L2-07",
+          "sequence": 7,
+          "nameZh": "厚庭",
+          "nameEn": "Houting",
+          "target": "hou ting",
+          "lat": 26.0452439,
+          "lon": 119.2139414
+        },
+        {
+          "id": "L2-08",
+          "stationId": "L2-08",
+          "sequence": 8,
+          "nameZh": "桔园洲",
+          "nameEn": "Juyuanzhou",
+          "target": "ju yuan zhou",
+          "lat": 26.0500281,
+          "lon": 119.2375629
+        },
+        {
+          "id": "L2-09",
+          "stationId": "L2-09",
+          "sequence": 9,
+          "nameZh": "洪湾",
+          "nameEn": "Hongwan",
+          "target": "hong wan",
+          "lat": 26.0503293,
+          "lon": 119.2452534
+        },
+        {
+          "id": "L2-10",
+          "stationId": "L2-10",
+          "sequence": 10,
+          "nameZh": "金山",
+          "nameEn": "Jinshan",
+          "target": "jin shan",
+          "lat": 26.0504551,
+          "lon": 119.2575136
+        },
+        {
+          "id": "L2-11",
+          "stationId": "L2-11",
+          "sequence": 11,
+          "nameZh": "金祥",
+          "nameEn": "Jinxiang",
+          "target": "jin xiang",
+          "lat": 26.0513389,
+          "lon": 119.2659099
+        },
+        {
+          "id": "L2-12",
+          "stationId": "L2-12",
+          "sequence": 12,
+          "nameZh": "祥坂",
+          "nameEn": "Xiangban",
+          "target": "xiang ban",
+          "lat": 26.06387,
+          "lon": 119.28131
+        },
+        {
+          "id": "L2-13",
+          "stationId": "L2-13",
+          "sequence": 13,
+          "nameZh": "宁化",
+          "nameEn": "Ninghua",
+          "target": "ning hua",
+          "lat": 26.0660186,
+          "lon": 119.2888404
+        },
+        {
+          "id": "L2-14",
+          "stationId": "L2-14",
+          "sequence": 14,
+          "nameZh": "西洋",
+          "nameEn": "Xiyang",
+          "target": "xi yang",
+          "lat": 26.0738655,
+          "lon": 119.2917208
+        },
+        {
+          "id": "L2-15",
+          "stationId": "L2-15",
+          "sequence": 15,
+          "nameZh": "南门兜",
+          "nameEn": "Nanmendou",
+          "target": "nan men dou",
+          "lat": 26.0793338,
+          "lon": 119.2973556
+        },
+        {
+          "id": "L2-16",
+          "stationId": "L2-16",
+          "sequence": 16,
+          "nameZh": "水部",
+          "nameEn": "Shuibu",
+          "target": "shui bu",
+          "lat": 26.0796725,
+          "lon": 119.3088077
+        },
+        {
+          "id": "L2-17",
+          "stationId": "L2-17",
+          "sequence": 17,
+          "nameZh": "紫阳",
+          "nameEn": "Ziyang",
+          "target": "zi yang",
+          "lat": 26.0797172,
+          "lon": 119.3219798
+        },
+        {
+          "id": "L2-18",
+          "stationId": "L2-18",
+          "sequence": 18,
+          "nameZh": "五里亭",
+          "nameEn": "Wuliting",
+          "target": "wu li ting",
+          "lat": 26.0777503,
+          "lon": 119.330235
+        },
+        {
+          "id": "L2-19",
+          "stationId": "L2-19",
+          "sequence": 19,
+          "nameZh": "前屿",
+          "nameEn": "Qianyu",
+          "target": "qian yu",
+          "lat": 26.075676,
+          "lon": 119.3456358
+        },
+        {
+          "id": "L2-20",
+          "stationId": "L2-20",
+          "sequence": 20,
+          "nameZh": "上洋",
+          "nameEn": "Shangyang",
+          "target": "shang yang",
+          "lat": 26.0691323,
+          "lon": 119.3587867
+        },
+        {
+          "id": "L2-21",
+          "stationId": "L2-21",
+          "sequence": 21,
+          "nameZh": "鼓山",
+          "nameEn": "Gushan",
+          "target": "gu shan",
+          "lat": 26.0565553,
+          "lon": 119.3701264
+        },
+        {
+          "id": "L2-22",
+          "stationId": "L2-22",
+          "sequence": 22,
+          "nameZh": "洋里",
+          "nameEn": "Yangli",
+          "target": "yang li",
+          "lat": 26.0473655,
+          "lon": 119.3673515
+        }
+      ],
+      "segments": [
+        [
+          "L2-01",
+          "L2-02",
+          "L2-03",
+          "L2-04",
+          "L2-05",
+          "L2-06",
+          "L2-07",
+          "L2-08",
+          "L2-09",
+          "L2-10",
+          "L2-11",
+          "L2-12",
+          "L2-13",
+          "L2-14",
+          "L2-15",
+          "L2-16",
+          "L2-17",
+          "L2-18",
+          "L2-19",
+          "L2-20",
+          "L2-21",
+          "L2-22"
+        ]
+      ],
+      "gameStationIds": [
+        "L2-01",
+        "L2-02",
+        "L2-03",
+        "L2-04",
+        "L2-05",
+        "L2-06",
+        "L2-07",
+        "L2-08",
+        "L2-09",
+        "L2-10",
+        "L2-11",
+        "L2-12",
+        "L2-13",
+        "L2-14",
+        "L2-15",
+        "L2-16",
+        "L2-17",
+        "L2-18",
+        "L2-19",
+        "L2-20",
+        "L2-21",
+        "L2-22"
+      ]
+    },
+    {
+      "id": "L4",
+      "lineId": "L4",
+      "lineName": "4 号线",
+      "color": "#f39800",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "L4-01",
+          "stationId": "L4-01",
+          "sequence": 1,
+          "nameZh": "半洲",
+          "nameEn": "Banzhou",
+          "target": "ban zhou",
+          "lat": 26.0606368,
+          "lon": 119.2330254
+        },
+        {
+          "id": "L4-02",
+          "stationId": "L4-02",
+          "sequence": 2,
+          "nameZh": "建新",
+          "nameEn": "Jianxin",
+          "target": "jian xin",
+          "lat": 26.067069,
+          "lon": 119.2327096
+        },
+        {
+          "id": "L4-03",
+          "stationId": "L4-03",
+          "sequence": 3,
+          "nameZh": "洪塘",
+          "nameEn": "Hongtang",
+          "target": "hong tang",
+          "lat": 26.07662,
+          "lon": 119.2453
+        },
+        {
+          "id": "L4-04",
+          "stationId": "L4-04",
+          "sequence": 4,
+          "nameZh": "金牛山",
+          "nameEn": "Jinniushan",
+          "target": "jin niu shan",
+          "lat": 26.0795815,
+          "lon": 119.2576765
+        },
+        {
+          "id": "L4-05",
+          "stationId": "L4-05",
+          "sequence": 5,
+          "nameZh": "凤凰池",
+          "nameEn": "Fenghuangchi",
+          "target": "feng huang chi",
+          "lat": 26.0815398,
+          "lon": 119.2679569
+        },
+        {
+          "id": "L4-06",
+          "stationId": "L4-06",
+          "sequence": 6,
+          "nameZh": "陆庄",
+          "nameEn": "Luzhuang",
+          "target": "lu zhuang",
+          "lat": 26.0855057,
+          "lon": 119.2787562
+        },
+        {
+          "id": "L4-07",
+          "stationId": "L4-07",
+          "sequence": 7,
+          "nameZh": "西门",
+          "nameEn": "Ximen",
+          "target": "xi men",
+          "lat": 26.0878249,
+          "lon": 119.285471
+        },
+        {
+          "id": "L4-08",
+          "stationId": "L4-08",
+          "sequence": 8,
+          "nameZh": "东街口",
+          "nameEn": "Dongjiekou",
+          "target": "dong jie kou",
+          "lat": 26.0890097,
+          "lon": 119.2945898
+        },
+        {
+          "id": "L4-09",
+          "stationId": "L4-09",
+          "sequence": 9,
+          "nameZh": "省立医院",
+          "nameEn": "Provincial Hospital",
+          "target": "sheng li yi yuan",
+          "lat": 26.0897948,
+          "lon": 119.3021636
+        },
+        {
+          "id": "L4-10",
+          "stationId": "L4-10",
+          "sequence": 10,
+          "nameZh": "东门",
+          "nameEn": "Dongmen",
+          "target": "dong men",
+          "lat": 26.0905595,
+          "lon": 119.3093683
+        },
+        {
+          "id": "L4-11",
+          "stationId": "L4-11",
+          "sequence": 11,
+          "nameZh": "三角池",
+          "nameEn": "Sanjiaochi",
+          "target": "san jiao chi",
+          "lat": 26.0940904,
+          "lon": 119.3214209
+        },
+        {
+          "id": "L4-12",
+          "stationId": "L4-12",
+          "sequence": 12,
+          "nameZh": "竹屿",
+          "nameEn": "Zhuyu",
+          "target": "zhu yu",
+          "lat": 26.0960607,
+          "lon": 119.3328938
+        },
+        {
+          "id": "L4-13",
+          "stationId": "L4-13",
+          "sequence": 13,
+          "nameZh": "横屿",
+          "nameEn": "Hengyu",
+          "target": "heng yu",
+          "lat": 26.0928188,
+          "lon": 119.3474607
+        },
+        {
+          "id": "L4-14",
+          "stationId": "L4-14",
+          "sequence": 14,
+          "nameZh": "后屿",
+          "nameEn": "Houyu",
+          "target": "hou yu",
+          "lat": 26.0842561,
+          "lon": 119.3475852
+        },
+        {
+          "id": "L4-15",
+          "stationId": "L4-15",
+          "sequence": 15,
+          "nameZh": "前屿",
+          "nameEn": "Qianyu",
+          "target": "qian yu",
+          "lat": 26.075676,
+          "lon": 119.3456358
+        },
+        {
+          "id": "L4-16",
+          "stationId": "L4-16",
+          "sequence": 16,
+          "nameZh": "光明港",
+          "nameEn": "Guangminggang",
+          "target": "guang ming gang",
+          "lat": 26.0678182,
+          "lon": 119.3420186
+        },
+        {
+          "id": "L4-17",
+          "stationId": "L4-17",
+          "sequence": 17,
+          "nameZh": "鳌峰洲",
+          "nameEn": "Aofengzhou",
+          "target": "ao feng zhou",
+          "lat": 26.0578207,
+          "lon": 119.339584
+        },
+        {
+          "id": "L4-18",
+          "stationId": "L4-18",
+          "sequence": 18,
+          "nameZh": "花海公园",
+          "nameEn": "Huahai Park",
+          "target": "hua hai gong yuan",
+          "lat": 26.0435362,
+          "lon": 119.3448839
+        },
+        {
+          "id": "L4-19",
+          "stationId": "L4-19",
+          "sequence": 19,
+          "nameZh": "会展中心",
+          "nameEn": "Exhibition Center",
+          "target": "hui zhan zhong xin",
+          "lat": 26.0325735,
+          "lon": 119.3545771
+        },
+        {
+          "id": "L4-20",
+          "stationId": "L4-20",
+          "sequence": 20,
+          "nameZh": "林浦",
+          "nameEn": "Linpu",
+          "target": "lin pu",
+          "lat": 26.0175292,
+          "lon": 119.3628842
+        },
+        {
+          "id": "L4-21",
+          "stationId": "L4-21",
+          "sequence": 21,
+          "nameZh": "城门",
+          "nameEn": "Chengmen",
+          "target": "cheng men",
+          "lat": 25.9991731,
+          "lon": 119.3552824
+        },
+        {
+          "id": "L4-22",
+          "stationId": "L4-22",
+          "sequence": 22,
+          "nameZh": "螺洲温泉",
+          "nameEn": "Luozhou Hot Spring",
+          "target": "luo zhou wen quan",
+          "lat": 25.9932745,
+          "lon": 119.3441167
+        },
+        {
+          "id": "L4-23",
+          "stationId": "L4-23",
+          "sequence": 23,
+          "nameZh": "帝封江",
+          "nameEn": "Difengjiang",
+          "target": "di feng jiang",
+          "lat": 25.99039,
+          "lon": 119.33003
+        }
+      ],
+      "segments": [
+        [
+          "L4-01",
+          "L4-02",
+          "L4-03",
+          "L4-04",
+          "L4-05",
+          "L4-06",
+          "L4-07",
+          "L4-08",
+          "L4-09",
+          "L4-10",
+          "L4-11",
+          "L4-12",
+          "L4-13",
+          "L4-14",
+          "L4-15",
+          "L4-16",
+          "L4-17",
+          "L4-18",
+          "L4-19",
+          "L4-20",
+          "L4-21",
+          "L4-22",
+          "L4-23"
+        ]
+      ],
+      "gameStationIds": [
+        "L4-01",
+        "L4-02",
+        "L4-03",
+        "L4-04",
+        "L4-05",
+        "L4-06",
+        "L4-07",
+        "L4-08",
+        "L4-09",
+        "L4-10",
+        "L4-11",
+        "L4-12",
+        "L4-13",
+        "L4-14",
+        "L4-15",
+        "L4-16",
+        "L4-17",
+        "L4-18",
+        "L4-19",
+        "L4-20",
+        "L4-21",
+        "L4-22",
+        "L4-23"
+      ]
+    },
+    {
+      "id": "L5",
+      "lineId": "L5",
+      "lineName": "5 号线",
+      "color": "#8e4c9e",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "L5-01",
+          "stationId": "L5-01",
+          "sequence": 1,
+          "nameZh": "荆溪厚屿",
+          "nameEn": "Jingxi Houyu",
+          "target": "jing xi hou yu",
+          "lat": 26.11456,
+          "lon": 119.22443
+        },
+        {
+          "id": "L5-02",
+          "stationId": "L5-02",
+          "sequence": 2,
+          "nameZh": "农林大学",
+          "nameEn": "Agriculture and Forestry University",
+          "target": "nong lin da xue",
+          "lat": 26.08792,
+          "lon": 119.24225
+        },
+        {
+          "id": "L5-03",
+          "stationId": "L5-03",
+          "sequence": 3,
+          "nameZh": "洪塘",
+          "nameEn": "Hongtang",
+          "target": "hong tang",
+          "lat": 26.07662,
+          "lon": 119.2453
+        },
+        {
+          "id": "L5-04",
+          "stationId": "L5-04",
+          "sequence": 4,
+          "nameZh": "阵坂",
+          "nameEn": "Zhenban",
+          "target": "zhen ban",
+          "lat": 26.06932,
+          "lon": 119.24711
+        },
+        {
+          "id": "L5-05",
+          "stationId": "L5-05",
+          "sequence": 5,
+          "nameZh": "马榕",
+          "nameEn": "Marong",
+          "target": "ma rong",
+          "lat": 26.05853,
+          "lon": 119.25379
+        },
+        {
+          "id": "L5-06",
+          "stationId": "L5-06",
+          "sequence": 6,
+          "nameZh": "金山",
+          "nameEn": "Jinshan",
+          "target": "jin shan",
+          "lat": 26.0504551,
+          "lon": 119.2575136
+        },
+        {
+          "id": "L5-07",
+          "stationId": "L5-07",
+          "sequence": 7,
+          "nameZh": "凤岗里",
+          "nameEn": "Fenggangli",
+          "target": "feng gang li",
+          "lat": 26.04183,
+          "lon": 119.26222
+        },
+        {
+          "id": "L5-08",
+          "stationId": "L5-08",
+          "sequence": 8,
+          "nameZh": "浦上大道",
+          "nameEn": "Pushang Dadao",
+          "target": "pu shang da dao",
+          "lat": 26.03707,
+          "lon": 119.26802
+        },
+        {
+          "id": "L5-09",
+          "stationId": "L5-09",
+          "sequence": 9,
+          "nameZh": "霞镜",
+          "nameEn": "Xiajing",
+          "target": "xia jing",
+          "lat": 26.02803,
+          "lon": 119.27174
+        },
+        {
+          "id": "L5-10",
+          "stationId": "L5-10",
+          "sequence": 10,
+          "nameZh": "东岭",
+          "nameEn": "Dongling",
+          "target": "dong ling",
+          "lat": 26.01652,
+          "lon": 119.27255
+        },
+        {
+          "id": "L5-11",
+          "stationId": "L5-11",
+          "sequence": 11,
+          "nameZh": "台屿",
+          "nameEn": "Taiyu",
+          "target": "tai yu",
+          "lat": 26.0089,
+          "lon": 119.27688
+        },
+        {
+          "id": "L5-12",
+          "stationId": "L5-12",
+          "sequence": 12,
+          "nameZh": "盘屿",
+          "nameEn": "Panyu",
+          "target": "pan yu",
+          "lat": 26.00242,
+          "lon": 119.28853
+        },
+        {
+          "id": "L5-13",
+          "stationId": "L5-13",
+          "sequence": 13,
+          "nameZh": "吴山",
+          "nameEn": "Wushan",
+          "target": "wu shan",
+          "lat": 26.00031,
+          "lon": 119.30615
+        },
+        {
+          "id": "L5-14",
+          "stationId": "L5-14",
+          "sequence": 14,
+          "nameZh": "盖山竹榄",
+          "nameEn": "Gaishan Zhulan",
+          "target": "gai shan zhu lan",
+          "lat": 25.99681,
+          "lon": 119.3158
+        },
+        {
+          "id": "L5-15",
+          "stationId": "L5-15",
+          "sequence": 15,
+          "nameZh": "义序",
+          "nameEn": "Yixu",
+          "target": "yi xu",
+          "lat": 25.98992,
+          "lon": 119.32271
+        },
+        {
+          "id": "L5-16",
+          "stationId": "L5-16",
+          "sequence": 16,
+          "nameZh": "帝封江",
+          "nameEn": "Difengjiang",
+          "target": "di feng jiang",
+          "lat": 25.99039,
+          "lon": 119.33003
+        },
+        {
+          "id": "L5-17",
+          "stationId": "L5-17",
+          "sequence": 17,
+          "nameZh": "螺洲古镇",
+          "nameEn": "Ancient Luozhou Town",
+          "target": "luo zhou gu zhen",
+          "lat": 25.98866,
+          "lon": 119.34888
+        },
+        {
+          "id": "L5-18",
+          "stationId": "L5-18",
+          "sequence": 18,
+          "nameZh": "前锦",
+          "nameEn": "Qianjin",
+          "target": "qian jin",
+          "lat": 25.987383,
+          "lon": 119.3577908
+        },
+        {
+          "id": "L5-19",
+          "stationId": "L5-19",
+          "sequence": 19,
+          "nameZh": "龙江",
+          "nameEn": "Longjiang",
+          "target": "long jiang",
+          "lat": 25.9873911,
+          "lon": 119.3675571
+        },
+        {
+          "id": "L5-20",
+          "stationId": "L5-20",
+          "sequence": 20,
+          "nameZh": "福州火车南站",
+          "nameEn": "Fuzhou South Railway",
+          "target": "fu zhou huo che nan zhan",
+          "lat": 25.9881828,
+          "lon": 119.3838132
+        }
+      ],
+      "segments": [
+        [
+          "L5-01",
+          "L5-02",
+          "L5-03",
+          "L5-04",
+          "L5-05",
+          "L5-06",
+          "L5-07",
+          "L5-08",
+          "L5-09",
+          "L5-10",
+          "L5-11",
+          "L5-12",
+          "L5-13",
+          "L5-14",
+          "L5-15",
+          "L5-16",
+          "L5-17",
+          "L5-18",
+          "L5-19",
+          "L5-20"
+        ]
+      ],
+      "gameStationIds": [
+        "L5-01",
+        "L5-02",
+        "L5-03",
+        "L5-04",
+        "L5-05",
+        "L5-06",
+        "L5-07",
+        "L5-08",
+        "L5-09",
+        "L5-10",
+        "L5-11",
+        "L5-12",
+        "L5-13",
+        "L5-14",
+        "L5-15",
+        "L5-16",
+        "L5-17",
+        "L5-18",
+        "L5-19",
+        "L5-20"
+      ]
+    },
+    {
+      "id": "L6",
+      "lineId": "L6",
+      "lineName": "6 号线",
+      "color": "#00b1cc",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "L6-01",
+          "stationId": "L6-01",
+          "sequence": 1,
+          "nameZh": "潘墩",
+          "nameEn": "Pandun",
+          "target": "pan dun",
+          "lat": 26.02388,
+          "lon": 119.352874
+        },
+        {
+          "id": "L6-02",
+          "stationId": "L6-02",
+          "sequence": 2,
+          "nameZh": "林浦",
+          "nameEn": "Linpu",
+          "target": "lin pu",
+          "lat": 26.0175292,
+          "lon": 119.3628842
+        },
+        {
+          "id": "L6-03",
+          "stationId": "L6-03",
+          "sequence": 3,
+          "nameZh": "樟岚",
+          "nameEn": "Zhanglan",
+          "target": "zhang lan",
+          "lat": 26.00916,
+          "lon": 119.38381
+        },
+        {
+          "id": "L6-04",
+          "stationId": "L6-04",
+          "sequence": 4,
+          "nameZh": "梁厝",
+          "nameEn": "Liangcuo",
+          "target": "liang cuo",
+          "lat": 25.9983401,
+          "lon": 119.405529
+        },
+        {
+          "id": "L6-05",
+          "stationId": "L6-05",
+          "sequence": 5,
+          "nameZh": "下洋",
+          "nameEn": "Xiayang",
+          "target": "xia yang",
+          "lat": 25.9904097,
+          "lon": 119.411623
+        },
+        {
+          "id": "L6-06",
+          "stationId": "L6-06",
+          "sequence": 6,
+          "nameZh": "营前",
+          "nameEn": "Yingqian",
+          "target": "ying qian",
+          "lat": 25.959898,
+          "lon": 119.468441
+        },
+        {
+          "id": "L6-07",
+          "stationId": "L6-07",
+          "sequence": 7,
+          "nameZh": "航城",
+          "nameEn": "Hangcheng",
+          "target": "hang cheng",
+          "lat": 25.95435,
+          "lon": 119.48565
+        },
+        {
+          "id": "L6-08",
+          "stationId": "L6-08",
+          "sequence": 8,
+          "nameZh": "郑和",
+          "nameEn": "Zhenghe",
+          "target": "zheng he",
+          "lat": 25.9612,
+          "lon": 119.49796
+        },
+        {
+          "id": "L6-09",
+          "stationId": "L6-09",
+          "sequence": 9,
+          "nameZh": "十洋",
+          "nameEn": "Shiyang",
+          "target": "shi yang",
+          "lat": 25.96131,
+          "lon": 119.51109
+        },
+        {
+          "id": "L6-10",
+          "stationId": "L6-10",
+          "sequence": 10,
+          "nameZh": "吴航",
+          "nameEn": "Wuhang",
+          "target": "wu hang",
+          "lat": 25.95395,
+          "lon": 119.52472
+        },
+        {
+          "id": "L6-11",
+          "stationId": "L6-11",
+          "sequence": 11,
+          "nameZh": "鹤上",
+          "nameEn": "Heshang",
+          "target": "he shang",
+          "lat": 25.94229,
+          "lon": 119.53513
+        },
+        {
+          "id": "L6-12",
+          "stationId": "L6-12",
+          "sequence": 12,
+          "nameZh": "沙京",
+          "nameEn": "Shajing",
+          "target": "sha jing",
+          "lat": 25.93394,
+          "lon": 119.54203
+        },
+        {
+          "id": "L6-13",
+          "stationId": "L6-13",
+          "sequence": 13,
+          "nameZh": "下吴",
+          "nameEn": "Xiawu",
+          "target": "xia wu",
+          "lat": 25.91553,
+          "lon": 119.57809
+        },
+        {
+          "id": "L6-14",
+          "stationId": "L6-14",
+          "sequence": 14,
+          "nameZh": "万寿",
+          "nameEn": "Wanshou (Huashan-Fuyi Hospital)",
+          "target": "wan shou",
+          "lat": 25.90267,
+          "lon": 119.59904
+        },
+        {
+          "id": "L6-15",
+          "stationId": "L6-15",
+          "sequence": 15,
+          "nameZh": "滨海中央商务区",
+          "nameEn": "Binhai CBD",
+          "target": "bin hai zhong yang shang wu qu",
+          "lat": 25.887061388,
+          "lon": 119.605250555
+        }
+      ],
+      "segments": [
+        [
+          "L6-01",
+          "L6-02",
+          "L6-03",
+          "L6-04",
+          "L6-05",
+          "L6-06",
+          "L6-07",
+          "L6-08",
+          "L6-09",
+          "L6-10",
+          "L6-11",
+          "L6-12",
+          "L6-13",
+          "L6-14",
+          "L6-15"
+        ]
+      ],
+      "gameStationIds": [
+        "L6-01",
+        "L6-02",
+        "L6-03",
+        "L6-04",
+        "L6-05",
+        "L6-06",
+        "L6-07",
+        "L6-08",
+        "L6-09",
+        "L6-10",
+        "L6-11",
+        "L6-12",
+        "L6-13",
+        "L6-14",
+        "L6-15"
+      ]
+    },
+    {
+      "id": "BHE",
+      "lineId": "BHE",
+      "lineName": "滨海快线",
+      "color": "#005baa",
+      "operatorName": "福州地铁",
+      "stations": [
+        {
+          "id": "BHE-01",
+          "stationId": "BHE-01",
+          "sequence": 1,
+          "nameZh": "福州火车站",
+          "nameEn": "Fuzhou Railway",
+          "target": "fu zhou huo che zhan",
+          "lat": 26.1156661,
+          "lon": 119.3135403
+        },
+        {
+          "id": "BHE-02",
+          "stationId": "BHE-02",
+          "sequence": 2,
+          "nameZh": "东门",
+          "nameEn": "Dongmen",
+          "target": "dong men",
+          "lat": 26.0905595,
+          "lon": 119.3093683
+        },
+        {
+          "id": "BHE-03",
+          "stationId": "BHE-03",
+          "sequence": 3,
+          "nameZh": "闽都",
+          "nameEn": "Mindu",
+          "target": "min dou",
+          "lat": 26.078283333,
+          "lon": 119.314505555
+        },
+        {
+          "id": "BHE-04",
+          "stationId": "BHE-04",
+          "sequence": 4,
+          "nameZh": "南公园",
+          "nameEn": "Nangongyuan Park",
+          "target": "nan gong yuan",
+          "lat": 26.067123,
+          "lon": 119.315418
+        },
+        {
+          "id": "BHE-05",
+          "stationId": "BHE-05",
+          "sequence": 5,
+          "nameZh": "三叉街",
+          "nameEn": "Sanchajie",
+          "target": "san cha jie",
+          "lat": 26.0391486,
+          "lon": 119.3206535
+        },
+        {
+          "id": "BHE-06",
+          "stationId": "BHE-06",
+          "sequence": 6,
+          "nameZh": "帝封江",
+          "nameEn": "Difengjiang",
+          "target": "di feng jiang",
+          "lat": 25.99039,
+          "lon": 119.33003
+        },
+        {
+          "id": "BHE-07",
+          "stationId": "BHE-07",
+          "sequence": 7,
+          "nameZh": "祥谦",
+          "nameEn": "Xiangqian",
+          "target": "xiang qian",
+          "lat": 25.933347222,
+          "lon": 119.381680555
+        },
+        {
+          "id": "BHE-08",
+          "stationId": "BHE-08",
+          "sequence": 8,
+          "nameZh": "首占",
+          "nameEn": "Shouzhan",
+          "target": "shou zhan",
+          "lat": 25.926866,
+          "lon": 119.4794072
+        },
+        {
+          "id": "BHE-09",
+          "stationId": "BHE-09",
+          "sequence": 9,
+          "nameZh": "大数据",
+          "nameEn": "Dashuju",
+          "target": "da shu ju",
+          "lat": 25.894418,
+          "lon": 119.593248
+        },
+        {
+          "id": "BHE-10",
+          "stationId": "BHE-10",
+          "sequence": 10,
+          "nameZh": "滨海中央商务区",
+          "nameEn": "Binhai CBD",
+          "target": "bin hai zhong yang shang wu qu",
+          "lat": 25.887061388,
+          "lon": 119.605250555
+        },
+        {
+          "id": "BHE-11",
+          "stationId": "BHE-11",
+          "sequence": 11,
+          "nameZh": "机场",
+          "nameEn": "Airport",
+          "target": "ji chang",
+          "lat": 25.931125,
+          "lon": 119.670430555
+        },
+        {
+          "id": "BHE-12",
+          "stationId": "BHE-12",
+          "sequence": 12,
+          "nameZh": "文岭",
+          "nameEn": "Wenling",
+          "target": "wen ling",
+          "lat": 25.976888611,
+          "lon": 119.690665277
+        }
+      ],
+      "segments": [
+        [
+          "BHE-01",
+          "BHE-02",
+          "BHE-03",
+          "BHE-04",
+          "BHE-05",
+          "BHE-06",
+          "BHE-07",
+          "BHE-08",
+          "BHE-09",
+          "BHE-10",
+          "BHE-11",
+          "BHE-12"
+        ]
+      ],
+      "gameStationIds": [
+        "BHE-01",
+        "BHE-02",
+        "BHE-03",
+        "BHE-04",
+        "BHE-05",
+        "BHE-06",
+        "BHE-07",
+        "BHE-08",
+        "BHE-09",
+        "BHE-10",
+        "BHE-11",
+        "BHE-12"
+      ]
+    }
+  ],
+  "updatedAt": "2026-07-16T15:02:10.120Z"
+}

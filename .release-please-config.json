@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "packages": {
+    ".": {
+      "package-name": "taiwan-metro-typing",
+      "changelog-path": "CHANGELOG.md",
+      "include-v-in-tag": true,
+      "include-component-in-tag": false,
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": false,
+      "draft": false,
+      "prerelease": false,
+      "extra-files": []
+    }
+  },
+  "changelog-sections": [
+    { "type": "feat", "section": "✨ 新功能 · Features" },
+    { "type": "fix", "section": "🐛 修复 · Bug Fixes" },
+    { "type": "perf", "section": "⚡ 性能 · Performance" },
+    { "type": "polish", "section": "💅 打磨 · Polish (a11y / UI / copy)" },
+    { "type": "refactor", "section": "♻️  重构 · Refactoring" },
+    { "type": "revert", "section": "⏪ 回滚 · Reverts" },
+    { "type": "docs", "section": "📚 文档 · Documentation" },
+    { "type": "style", "section": "🎨 样式 · Styles", "hidden": true },
+    { "type": "test", "section": "🧪 测试 · Tests", "hidden": true },
+    { "type": "build", "section": "📦 构建 · Build System" },
+    { "type": "ci", "section": "🤖 CI", "hidden": true },
+    { "type": "chore", "section": "🧹 杂务 · Chores", "hidden": true }
+  ]
+}

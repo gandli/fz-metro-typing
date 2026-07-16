@@ -1,0 +1,24 @@
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+
+# 权限：需要写 contents (打 tag/建 release) 和 pull-requests (维护 Release PR)
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-please-${{ github.ref }}
+  cancel-in-progress: false # release 不能并发 cancel, 会残留半推 tag
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          # 走 monorepo/simple 通用配置文件, 支持 manifest 模式
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json

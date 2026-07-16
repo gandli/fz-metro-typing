@@ -1,0 +1,2305 @@
+:root {
+  color-scheme: light;
+  --ink: #161619;
+  --muted: #74716c;
+  --paper: #f5f1e8;
+  --card: #fffdf8;
+  --line: #d9d4ca;
+  --accent: #f08c4a;
+  --accent-dark: #d96a2a;
+  --green: #b8d65a;
+  --shadow: 0 22px 60px rgba(40, 35, 25, 0.12);
+  /* focus ring: 通用 keyboard focus 环 (2px 白 + 4px 品牌蓝, WCAG 3:1 ≥ passed) */
+  --focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px #006bff;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: 320px;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Noto Sans SC", sans-serif;
+}
+button,
+input {
+  font: inherit;
+}
+
+/* ============================================================
+ * 全局 keyboard focus 环 (a11y P1 修复)
+ * ------------
+ * 覆盖所有可聚焦 interactive 元素. 只走 :focus-visible 避免鼠标点击后残留.
+ * 使用 --focus-ring token, 白色内环 + 品牌蓝外环, 对深浅背景都可见.
+ * 局部组件可用 outline: none + 自定义 box-shadow 覆盖.
+ * ============================================================ */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: inherit;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+/* input/textarea 保留原 border, 焦点态叠加 ring (不要覆盖 background) */
+input:focus-visible,
+textarea:focus-visible {
+  border-color: transparent;
+}
+
+.mobile-typing-input {
+  position: fixed;
+  z-index: -1;
+  left: 50%;
+  bottom: 72px;
+  width: min(420px, 70vw);
+  height: 2px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  font-size: 16px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.screen-reader-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+button {
+  color: inherit;
+}
+.app-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
+.topbar {
+  position: relative;
+  z-index: 20;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(20px, 5vw, 72px);
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: none;
+  font:
+    700 15px "DM Mono",
+    monospace;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+}
+.top-actions {
+  display: flex;
+  gap: 8px;
+}
+.icon-button {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+  line-height: 1;
+  cursor: pointer;
+}
+.icon-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--ink);
+}
+
+.home-map-screen {
+  position: relative;
+  min-height: calc(100vh - 74px);
+  min-height: calc(100dvh - 74px);
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 65% 38%,
+      rgba(240, 140, 74, 0.09),
+      transparent 34%
+    ),
+    linear-gradient(145deg, #faf8f2 0%, var(--paper) 62%, #efebe1 100%);
+}
+.taiwan-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--ink);
+}
+.home-map-grid {
+  color: var(--ink);
+}
+.taiwan-counties path {
+  fill: color-mix(in srgb, var(--card) 92%, #e9e5db);
+  stroke: #bbb7ae;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+.home-route {
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.3s ease;
+}
+.home-route.muted {
+  opacity: 0.08;
+  pointer-events: none;
+}
+.home-route-hit,
+.home-route-casing,
+.home-route-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.home-route-hit {
+  stroke: transparent;
+  stroke-width: 26;
+}
+.home-route-casing {
+  stroke: rgba(255, 255, 255, 0.96);
+  stroke-width: 10;
+}
+.home-route-line {
+  stroke-width: 5.5;
+  transition: stroke-width 0.2s ease;
+}
+.home-route-node {
+  fill: #fff;
+  stroke: #292725;
+  stroke-width: 1.7;
+  vector-effect: non-scaling-stroke;
+}
+.home-route:hover .home-route-line,
+.home-route:focus .home-route-line,
+.home-route.selected .home-route-line {
+  stroke-width: 9;
+}
+.home-map-screen.focused .taiwan-counties {
+  opacity: 0.45;
+}
+
+.taiwan-map.intro .taiwan-counties {
+  animation: route-fade 0.6s ease both;
+}
+/* vector-effect must be disabled while drawing: Chromium applies dashes in screen space under non-scaling-stroke, which breaks pathLength-normalized dashes. */
+.taiwan-map.intro .home-route-casing,
+.taiwan-map.intro .home-route-line {
+  vector-effect: none;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  animation: route-draw 1.1s cubic-bezier(0.55, 0.06, 0.25, 1)
+    var(--seg-delay, var(--draw-delay, 0s)) both;
+}
+@keyframes route-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes route-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-copy {
+  position: absolute;
+  z-index: 4;
+  left: clamp(28px, 6vw, 96px);
+  top: clamp(58px, 10vh, 112px);
+  width: min(470px, 42vw);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s ease;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Eyebrow: 事实型 tagline (真实路线, 真实站点). 保留但去营销色带装饰,
+     product register 里工具型 kicker 不需要贴牌感. */
+  color: var(--muted);
+  font:
+    500 12px "DM Mono",
+    monospace;
+  letter-spacing: 0.08em;
+}
+.eyebrow span {
+  /* 从 3px accent 色带 → 1px line 短横, 视觉降级为分隔而非强调 */
+  width: 20px;
+  height: 1px;
+  background: var(--line);
+}
+/* 语言 cycle 按钮: 文本标签 (EN / 简 / 繁), 与 icon-button 尺寸对齐 */
+.icon-button.lang-cycle {
+  font-family:
+    "SF Pro Text", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+.icon-button.lang-cycle .lang-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  line-height: 1;
+}
+h1 {
+  max-width: 900px;
+  margin: 24px 0 18px;
+  font-size: clamp(54px, 6.8vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.065em;
+  font-weight: 900;
+}
+h1 em {
+  /* 单色 headline: em 语义强调用 font-style italic 或 font-weight, 不用色区分.
+     product register 里工具型 hero 不需要双色/gradient text. */
+  color: inherit;
+  font-style: normal;
+}
+.lede {
+  max-width: 660px;
+  margin: 0 0 30px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.45vw, 19px);
+  line-height: 1.8;
+}
+.home-instruction {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.75);
+  color: var(--muted);
+  font-size: 12px;
+}
+.home-instruction b {
+  color: var(--accent);
+  font:
+    700 11px "DM Mono",
+    monospace;
+}
+.data-status {
+  display: block;
+  margin-top: 14px;
+  color: var(--muted);
+  font:
+    500 11px "DM Mono",
+    monospace;
+}
+.home-map-screen.focused .home-copy {
+  opacity: 0;
+  transform: translateX(-30px);
+  pointer-events: none;
+}
+
+.map-reset {
+  position: absolute;
+  z-index: 8;
+  left: clamp(18px, 4vw, 58px);
+  top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 8px 24px rgba(40, 35, 25, 0.08);
+  line-height: 1;
+  cursor: pointer;
+}
+.map-reset svg,
+.back-button svg,
+.icon-button svg,
+.start-button svg,
+.next-station svg {
+  display: block;
+  flex: 0 0 auto;
+}
+kbd {
+  padding: 2px 6px;
+  border: 1px solid #c8c5bd;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.7);
+  font:
+    500 10px "DM Mono",
+    monospace;
+}
+.route-focus-card {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  min-width: min(470px, calc(100vw - 170px));
+  padding: 16px 24px;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: var(--shadow);
+}
+.focus-kicker {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  text-align: center;
+  font:
+    700 9px "DM Mono",
+    monospace;
+  letter-spacing: 0.17em;
+}
+.focus-route-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+}
+.focus-route-title h2 {
+  margin: 0;
+  font-size: 25px;
+}
+.focus-route-title p {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.focus-line-code,
+.route-symbol {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  font:
+    700 11px "DM Mono",
+    monospace;
+  font-variant-numeric: tabular-nums;   /* 数字等宽, 与字母混排稳定 */
+  letter-spacing: 0;                    /* 双字母 BR/BL 也居中: 靠 grid place-items 而非字距 */
+  text-align: center;
+}
+.focus-line-code {
+  width: 42px;
+  height: 42px;
+  border: 4px solid var(--focus-color);
+  color: var(--focus-color);
+}
+
+.home-control-deck {
+  position: absolute;
+  z-index: 7;
+  left: 50%;
+  bottom: 24px;
+  width: min(1120px, calc(100% - 40px));
+  transform: translateX(-50%);
+}
+.route-carousel {
+  display: flex;
+  gap: 9px;
+  padding: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.route-button:first-child {
+  margin-left: auto;
+}
+.route-button:last-child {
+  margin-right: auto;
+}
+.route-carousel::-webkit-scrollbar {
+  display: none;
+}
+.route-button {
+  flex: 0 0 auto;
+  min-height: 58px;
+  min-width: 142px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  text-align: left;
+  /* 默认卡: 纯中性边 (不引入 route 色, 避免像 error/focus 态).
+     交互三态解耦: default (line) → hover (route 40%) → selected (route 满色) */
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 9px 26px rgba(44, 39, 28, 0.08);
+  cursor: pointer;
+  transition: 0.18s ease;
+}
+.route-button:hover {
+  border-color: color-mix(in srgb, var(--route) 60%, var(--line));
+  transform: translateY(-2px);
+}
+.route-button.selected {
+  color: #fff;
+  border-color: var(--route);
+  background: var(--route);
+  transform: translateY(-7px);
+}
+.route-symbol {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border: 3px solid var(--route);
+  color: var(--route);
+}
+.route-button strong,
+.route-button small {
+  display: block;
+}
+.route-button strong {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.route-button small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+}
+.route-button.selected small {
+  color: rgba(255, 255, 255, 0.76);
+}
+.home-map-screen.focused .route-carousel {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+.focus-actions {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 253, 248, 0.94);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+.run-picker,
+.direction-picker,
+.option-toolbar,
+.segmented-control,
+.run-options,
+.direction-options,
+.segmented-options {
+  display: flex;
+  align-items: center;
+}
+.run-picker,
+.direction-picker {
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.control-label {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font:
+    700 9px "DM Mono",
+    monospace;
+  letter-spacing: 0.08em;
+}
+.run-options {
+  flex: 1;
+  gap: 6px;
+}
+.direction-options {
+  flex: 1;
+  gap: 6px;
+}
+.run-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 42px;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--card) 76%, transparent);
+  cursor: pointer;
+}
+.run-option input,
+.direction-option input,
+.segment-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.run-option.selected {
+  border-color: var(--focus-color);
+  box-shadow: inset 0 0 0 1px var(--focus-color);
+}
+.direction-option {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--card) 76%, transparent);
+  cursor: pointer;
+}
+.direction-option.selected {
+  border-color: var(--focus-color);
+  background: color-mix(in srgb, var(--focus-color) 10%, var(--card));
+  box-shadow: inset 0 0 0 1px var(--focus-color);
+}
+.direction-option > span {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+.direction-option small {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.direction-option b {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;       /* 箭头固定靠右, 不受站名长度影响 */
+  width: 100%;
+  overflow: hidden;
+  font-size: clamp(10px, 3.5vw, 13px);  /* 超长站名 (忠孝复兴) 自动缩, 不换行不溢出 */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.direction-option b svg {
+  flex: 0 0 auto;
+  color: var(--focus-color);
+}
+.run-option > span {
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+.run-option b {
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.run-option small {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 9px;
+}
+.option-toolbar {
+  gap: 10px;
+}
+.segmented-control {
+  min-width: 0;
+  gap: 7px;
+}
+.segmented-options {
+  flex: 1;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--paper) 52%, transparent);
+}
+.segment-option {
+  min-width: 60px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.segment-option.selected {
+  background: color-mix(in srgb, var(--focus-color) 22%, var(--card));
+  box-shadow: inset 0 0 0 1px var(--focus-color);
+}
+.run-option input:focus-visible + span,
+.direction-option input:focus-visible + span,
+.segment-option input:focus-visible + span {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+.option-toolbar .start-button {
+  flex: 1;
+  min-width: 176px;
+  min-height: 44px;
+  border-radius: 12px;
+  padding-left: 20px;
+}
+.option-toolbar .start-button b {
+  width: 34px;
+  height: 34px;
+}
+.start-button,
+.secondary-button {
+  border-radius: 16px;
+  cursor: pointer;
+  font-weight: 900;
+}
+.start-button {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 12px 0 24px;
+  color: #fff;
+  border: 0;
+  background: var(--ink);
+}
+.start-button b {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--ink);
+  background: color-mix(in srgb, #fff 78%, var(--focus-color, #fff));
+  box-shadow: inset 0 0 0 1px rgba(22, 22, 25, 0.08);
+  font-size: 22px;
+  line-height: 1;
+}
+.focus-actions .start-button,
+body.dark .focus-actions .start-button {
+  color: #fff;
+  background: var(--focus-color);
+}
+
+.game {
+  --game-card-height: 220px;
+  --map-route-color: var(--active-route);
+  --map-casing: rgba(255, 255, 255, 0.93);
+  --map-node-fill: #f7f4ed;
+  --map-node-stroke: #292725;
+  --map-opacity: 0.9;
+  --map-filter: saturate(0.9);
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #efeee8;
+}
+/* 手势容器: 占满原 .metro-map 位置, 承载 pan/pinch/rotate 变换 */
+.metro-map-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
+  /* 默认无过渡, applyTransform(animated) 才临时启用 */
+  cursor: grab;
+  /* 缩放时 SVG stroke 需要 counter-scale 保持视觉粗细稳定 */
+  --map-scale: 1;
+}
+.metro-map-container:active {
+  cursor: grabbing;
+}
+.metro-map {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: var(--map-opacity);
+  filter: var(--map-filter);
+  /* SVG 本身不接 pointer, 事件冒泡到 container */
+  pointer-events: none;
+  /* stroke 抵消缩放: 放大时线宽 / scale 保持视觉粗细 */
+  --stroke-adjust: calc(1 / var(--map-scale, 1));
+}
+/* 归位按钮 (data-visible 由 JS 控制) */
+.map-reset-btn {
+  position: absolute;
+  right: 12px;
+  top: calc(56px + 60px);  /* 让开 scorebar */
+  z-index: 8;
+  padding: 8px 14px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  font-size: 12px;
+  font-weight: 500;
+  color: #171719;
+  cursor: pointer;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(-4px) scale(0.95);
+  pointer-events: none;
+  transition:
+    opacity 200ms ease,
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.map-reset-btn[data-visible="1"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.map-reset-btn:active {
+  transform: scale(0.95);
+}
+.map-reset-btn span {
+  font-size: 14px;
+  color: #666;
+}
+.game-counties path {
+  fill: #f7f4ed;
+  stroke: #d2cec4;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+.map-line,
+.map-casing,
+.map-progress {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.map-line.network {
+  stroke-width: 4;
+  opacity: 0.13;
+}
+.map-casing {
+  stroke: var(--map-casing);
+  stroke-width: 15;
+}
+.map-line.selected {
+  stroke: var(--map-route-color);
+  stroke-width: 9;
+  opacity: 0.66;
+}
+.map-progress {
+  stroke: var(--map-route-color);
+  stroke-width: 9;
+  opacity: 1;
+}
+.map-node {
+  fill: var(--map-node-fill);
+  stroke: #77736c;
+  stroke-width: 1.5;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+.map-node.on-route {
+  opacity: 1;
+  stroke: var(--map-node-stroke);
+  stroke-width: 1.8;
+}
+.map-node.is-passed {
+  fill: var(--map-route-color);
+  stroke: #fff;
+}
+.map-node.is-current {
+  fill: var(--green);
+  stroke: #111;
+  stroke-width: 3;
+}
+.map-node.is-next {
+  fill: var(--map-node-fill);
+  stroke: var(--map-route-color);
+  stroke-width: 3;
+}
+.map-train {
+  filter: drop-shadow(0 5px 6px rgba(0, 0, 0, 0.32));
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.map-train-icon {
+  transform-origin: 0 0;
+}
+.train-halo {
+  fill: color-mix(in srgb, var(--active-route) 28%, transparent);
+  animation: train-pulse 1.2s ease-in-out infinite;
+}
+.train-body {
+  fill: var(--ink);
+  stroke: #fff;
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+}
+.train-window {
+  fill: var(--green);
+}
+.train-light {
+  fill: #fff;
+}
+.game-chrome {
+  position: absolute;
+  left: clamp(20px, 4vw, 58px);
+  right: clamp(20px, 4vw, 58px);
+  top: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 15px;
+  border: 1px solid #c8c5bd;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.82);
+  line-height: 1;
+  cursor: pointer;
+}
+.route-pill {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+.scorebar {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: calc(var(--game-card-height) + 46px);
+  transform: translateX(-50%);
+  display: flex;
+  overflow: hidden;
+  color: var(--ink);
+  border: 1px solid #bdb9af;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.scorebar > div {
+  min-width: 116px;
+  padding: 12px 18px;
+  text-align: center;
+  border-right: 1px solid rgba(22, 22, 25, 0.12);
+}
+.scorebar > div:last-child {
+  border: 0;
+}
+.scorebar small {
+  display: block;
+  color: #7c942a;
+  font-size: 10px;
+}
+.scorebar strong {
+  font:
+    500 26px "DM Mono",
+    monospace;
+}
+.scorebar span {
+  margin-left: 3px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.station-card {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 28px;
+  width: min(760px, 94vw);
+  height: var(--game-card-height);
+  display: grid;
+  grid-template-rows: 30px 96px 1fr 30px;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid #bdb9af;
+  border-radius: 20px;
+  background: rgba(255, 253, 248, 0.96);
+  box-shadow: var(--shadow);
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.station-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 20px;
+  padding: 8px 24px 0;
+  color: var(--muted);
+  font:
+    500 10px "DM Mono",
+    monospace;
+}
+.station-meta span:first-child {
+  color: var(--active-route);
+  font-weight: 700;
+}
+.station-meta span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-align: right;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.station-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 24px 30px;
+}
+.station-main p {
+  margin: 0 0 7px;
+  color: var(--muted);
+  font:
+    500 10px "DM Mono",
+    monospace;
+  letter-spacing: 0.14em;
+}
+.station-main h2 {
+  margin: 0;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+}
+.next-station {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  text-align: right;
+  align-items: center;
+  gap: 2px 12px;
+}
+.next-station span {
+  grid-column: 1;
+  color: var(--muted);
+  font-size: 11px;
+}
+.next-station strong {
+  grid-column: 1;
+  font-size: 17px;
+}
+.next-station b {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: var(--active-route);
+  font-size: 28px;
+  line-height: 1;
+}
+.typing-area {
+  position: relative;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr;
+  border-top: 1px solid var(--line);
+}
+.typing-area.is-chinese {
+  grid-template-rows: minmax(0, 1fr) 22px;
+}
+.typing-target {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  padding: 6px 24px 8px;
+  font:
+    500 clamp(24px, 4vw, 36px) "DM Mono",
+    monospace;
+  font-size: min(clamp(24px, 4vw, 36px), var(--fit-font, 36px));
+  letter-spacing: 0.025em;
+}
+.typing-target span {
+  color: #b6b2aa;
+}
+.typing-target .typed {
+  color: var(--ink);
+}
+.typing-target .current {
+  color: var(--active-route);
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.16em;
+  text-decoration-skip-ink: none;
+}
+.typing-area.is-chinese .typing-target {
+  padding: 0 24px;
+  column-gap: 0.08em;
+  font-family: "Noto Sans SC", sans-serif;
+  font-size: min(clamp(26px, 3.5vw, 32px), var(--fit-font, 32px));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.composition-status {
+  min-height: 22px;
+  margin: 0;
+  padding: 4px 20px 3px;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.composition-status.is-composing {
+  color: var(--ink);
+}
+.composition-status strong {
+  color: var(--active-route);
+  font-size: 11px;
+}
+.line-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 7px;
+  color: #fff;
+  background: var(--active-route);
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+.line-strip i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.results {
+  min-height: calc(100vh - 74px);
+  min-height: calc(100dvh - 74px);
+  display: grid;
+  place-items: center;
+  padding: 60px 24px;
+}
+.result-card {
+  width: min(680px, 100%);
+  padding: clamp(30px, 6vw, 62px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.result-kicker {
+  color: var(--result-route, var(--accent));
+  font:
+    700 11px "DM Mono",
+    monospace;
+  letter-spacing: 0.18em;
+}
+.result-card h2 {
+  margin: 15px 0 8px;
+  font-size: clamp(32px, 5vw, 52px);
+}
+.result-card > p {
+  color: var(--muted);
+}
+.result-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 34px 0;
+  border-block: 1px solid var(--line);
+}
+.result-metrics div {
+  padding: 24px 10px;
+  border-right: 1px solid var(--line);
+}
+.result-metrics div:last-child {
+  border: 0;
+}
+.result-metrics strong,
+.result-metrics span {
+  display: block;
+}
+.result-metrics strong {
+  font:
+    500 36px "DM Mono",
+    monospace;
+}
+.result-metrics span {
+  color: var(--muted);
+  font-size: 11px;
+}
+.result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+.secondary-button {
+  min-height: 58px;
+  padding: 0 24px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.loading {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+}
+.loading span {
+  width: 34px;
+  height: 34px;
+  margin: auto;
+  border: 3px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.data-error {
+  min-height: calc(100vh - 74px);
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+}
+.data-error span {
+  color: var(--muted);
+}
+.data-error button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  background: var(--accent);
+  cursor: pointer;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+  padding: 26px clamp(20px, 5vw, 72px) 30px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+footer p {
+  margin: 0;
+}
+footer a {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+footer a:hover {
+  color: var(--accent-dark);
+  text-decoration-color: currentColor;
+}
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer-wordmark {
+  color: var(--ink);
+  font:
+    700 12px "DM Mono",
+    monospace;
+  letter-spacing: 0.14em;
+}
+.footer-lines {
+  display: flex;
+  gap: 5px;
+}
+.footer-lines i {
+  width: 17px;
+  height: 4px;
+  border-radius: 999px;
+}
+.footer-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 7px;
+  line-height: 1.6;
+}
+.footer-label {
+  margin-right: 10px;
+  padding: 2px 7px;
+  border: 1px solid color-mix(in srgb, var(--accent-dark) 45%, transparent);
+  border-radius: 999px;
+  color: var(--accent-dark);
+  font:
+    700 9px "DM Mono",
+    monospace;
+  letter-spacing: 0.15em;
+}
+.footer-sep {
+  margin: 0 8px;
+  color: color-mix(in srgb, var(--muted) 60%, transparent);
+}
+
+body.dark {
+  color-scheme: dark;
+  --ink: #f2efe7;
+  --muted: #b4afa4;                                /* 原 #aaa69d, 提到对小字过 WCAG AA 4.5:1 */
+  --paper: #171719;
+  --card: #222225;
+  --line: #4a494e;                                 /* 原 #3a393d 1.3:1 → #4a494e ~2.8:1, 描边可见 */
+  --shadow: 0 22px 60px rgba(0, 0, 0, 0.55);       /* 原 0.3, dark 下阴影需更深才可辨 */
+}
+body.dark .home-map-screen {
+  background:
+    radial-gradient(
+      circle at 65% 38%,
+      rgba(240, 140, 74, 0.12),
+      transparent 35%
+    ),
+    #171719;
+}
+body.dark .taiwan-counties path {
+  fill: #232326;
+  stroke: #55525a;
+}
+body.dark .route-focus-card,
+body.dark .focus-actions,
+body.dark .route-button,
+body.dark .map-reset {
+  background: rgba(34, 34, 37, 0.94);
+}
+/* dark 徽章: 白底 → 深灰底, 保留彩字彩环. 融入深色主题避免过亮扎眼. */
+body.dark .focus-line-code,
+body.dark .route-symbol {
+  background: #2a2a2e;
+  color: color-mix(in srgb, var(--focus-color) 88%, white 12%);   /* 略提亮饱和色, 暗底更清晰 */
+}
+body.dark .game {
+  --map-route-color: color-mix(in srgb, var(--active-route) 84%, white);
+  --map-casing: rgba(8, 8, 10, 0.92);
+  --map-node-fill: #202024;
+  --map-node-stroke: #a8a59e;
+  --map-opacity: 1;
+  --map-filter: none;
+  background: #19191b;
+}
+body.dark .map-line.selected {
+  opacity: 1;
+}
+body.dark .game-counties path {
+  fill: #202024;
+  stroke: #444249;
+}
+body.dark .station-card {
+  background: rgba(34, 34, 37, 0.96);
+  border-color: #48474b;
+}
+body.dark .scorebar {
+  color: var(--ink);
+  border-color: #48474b;
+  background: #222225;
+}
+body.dark .scorebar > div {
+  border-right-color: rgba(255, 255, 255, 0.13);
+}
+body.dark .scorebar small {
+  color: var(--green);
+}
+body.dark .start-button {
+  color: #151518;
+  background: #f2efe7;
+}
+body.dark .back-button {
+  color: #eee;
+  background: rgba(34, 34, 37, 0.85);
+  border-color: #555;
+}
+/* 手机端 game 页 back-button 用 !important 白底; dark 下必须显式反色, 否则白字白底 */
+@media (max-width: 767px) {
+  body.dark .back-button {
+    color: #f2efe7 !important;
+    background: rgba(34, 34, 37, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    backdrop-filter: blur(10px);
+  }
+}
+body.dark .secondary-button {
+  background: #29292d;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+@keyframes train-pulse {
+  50% {
+    opacity: 0.24;
+    transform: scale(1.2);
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.station-card.shake {
+  animation: shake 0.15s linear;
+}
+
+@media (max-width: 1000px) {
+  .home-copy {
+    width: min(440px, calc(100% - 48px));
+  }
+  .taiwan-map {
+    transform: translateX(15%);
+  }
+  .home-map-screen.focused .taiwan-map {
+    transform: none;
+  }
+  .route-carousel {
+    justify-content: flex-start;
+  }
+  .route-button:first-child {
+    margin-left: 0;
+  }
+  .route-button:last-child {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .topbar {
+    height: 64px;
+    padding-inline: 16px;
+  }
+  .brand {
+    gap: 9px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .home-map-screen,
+  .results {
+    min-height: calc(100vh - 64px);
+    min-height: max(680px, calc(100svh - 64px));
+  }
+  .home-map-screen {
+    overflow: clip;
+  }
+  .game {
+    --game-card-height: 242px;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .home-copy {
+    top: 26px;
+    left: 20px;
+    right: 20px;
+    width: auto;
+  }
+  .eyebrow {
+    gap: 9px;
+    font-size: 10px;
+    letter-spacing: 0.11em;
+  }
+  .eyebrow span {
+    width: 28px;
+  }
+  .home-copy h1 {
+    max-width: 340px;
+    margin: 16px 0 14px;
+    font-size: clamp(42px, 12.5vw, 48px);
+    line-height: 1.02;
+    letter-spacing: -0.055em;
+  }
+  .home-copy h1 em {
+    display: block;
+  }
+  .home-copy .lede {
+    max-width: 350px;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .home-instruction {
+    display: none;
+  }
+  .taiwan-map {
+    transform: translate(-17.5%, 16%) scale(1.02);
+    transform-origin: center;
+  }
+  .home-map-screen.focused .taiwan-map {
+    transform: none;
+  }
+  .route-focus-card {
+    top: 62px;
+    left: 12px !important;
+    right: 12px;
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: none;
+    transform: none !important;
+    padding: 12px 16px !important;
+    border-radius: 14px;
+    z-index: 5;
+  }
+  .focus-route-title h2 {
+    font-size: 21px;
+  }
+  .map-reset {
+    top: 12px;
+    left: 12px;
+    z-index: 7;   /* 在 focus-card 之上, 但两者垂直不再重叠 */
+    min-height: 40px;
+    padding: 8px 12px;
+  }
+  .map-reset kbd {
+    display: none;
+  }
+  .home-control-deck {
+    bottom: max(6px, env(safe-area-inset-bottom));
+    width: 100%;
+  }
+  .route-carousel {
+    gap: 10px;
+    padding: 10px 18px 14px;
+    scroll-padding-inline: 18px;
+    scroll-snap-type: x mandatory;
+  }
+  .route-button {
+    min-width: clamp(224px, 68vw, 252px);
+    min-height: 70px;
+    padding: 12px 15px;
+    scroll-snap-align: start;
+  }
+  .home-map-screen.focused .route-carousel {
+    /* focused 状态省去换线横滑条 (换线走 Back 按钮), 避免与地图/deck 之间产生 68px 隐形空白 */
+    display: none !important;
+  }
+  .focus-actions {
+    width: calc(100% - 18px);
+    margin-inline: auto;
+    padding: 9px;
+    border-radius: 18px;
+  }
+  .run-picker {
+    align-items: stretch;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+  .run-picker > .control-label,
+  .direction-picker > .control-label,
+  .segmented-control > .control-label {
+    display: none;
+  }
+  .direction-picker {
+    margin-bottom: 8px;
+  }
+  .direction-options {
+    gap: 6px;
+  }
+  .direction-option {
+    min-height: 52px;   /* 提高允许 small/b 双行 */
+    padding-inline: 10px;
+    min-width: 0;   /* flex child 允许收缩, 避免撑出容器 */
+    overflow: hidden;
+    align-items: center !important;  /* 左卡 2 行 右卡 3 行时垂直居中对齐 */
+  }
+  .direction-options {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    min-width: 0;
+  }
+  .direction-option > span {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    overflow: hidden;
+    width: 100%;
+  }
+  .direction-option small,
+  .direction-option b {
+    /* 英文长站名 (Taipei Nangang Exhibition Center) 允许 2 行, 3 行以上省略 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    white-space: normal !important;   /* 覆盖 desktop 的 nowrap */
+  }
+  .direction-option small { font-size: 10px; }
+  .direction-option b { font-size: 11px; font-weight: 700; }
+  .direction-option b svg { flex-shrink: 0; }
+  .run-options {
+    gap: 6px;
+  }
+  .run-option {
+    min-height: 40px;
+    padding: 5px 7px;
+  }
+  .run-option > span {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .run-option b {
+    max-width: 100%;
+    font-size: 11px;
+  }
+  .option-toolbar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .segmented-control {
+    display: block;
+  }
+  .segmented-options {
+    width: 100%;
+  }
+  .segment-option {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 36px;
+    padding-inline: 8px;
+  }
+  .option-toolbar .start-button {
+    grid-column: 1 / -1;
+    min-height: 50px;
+  }
+  .start-button {
+    flex: 1 0 58px;
+  }
+  .data-status {
+    display: none;
+  }
+  .scorebar {
+    width: calc(100% - 24px);
+    top: auto;
+    bottom: calc(var(--game-card-height) + 26px);
+  }
+  .scorebar > div {
+    min-width: 0;
+    flex: 1;
+    padding: 10px 3px;
+  }
+  .scorebar strong {
+    font-size: 20px;
+  }
+  .game-chrome {
+    top: 14px;
+    left: 12px;
+    right: 12px;
+  }
+  .game-chrome kbd {
+    display: none;
+  }
+  .route-pill {
+    max-width: 48%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .station-card {
+    bottom: max(10px, env(safe-area-inset-bottom));
+    grid-template-rows: 30px 102px 1fr 31px;
+    border-radius: 16px;
+  }
+  .station-meta {
+    padding-inline: 20px;
+  }
+  .station-main {
+    padding: 10px 20px 24px;
+  }
+  .station-main h2 {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 40px;
+    text-overflow: ellipsis;
+  }
+  .next-station {
+    display: none;
+  }
+  .typing-target {
+    padding-inline: 20px;
+  }
+  .result-metrics strong {
+    font-size: 27px;
+  }
+  .result-actions {
+    flex-direction: column;
+  }
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px 26px;
+  }
+  .footer-meta {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-copy h1 {
+    font-size: 42px;
+  }
+  .home-copy .lede {
+    font-size: 12.5px;
+  }
+  .result-card {
+    padding-inline: 22px;
+  }
+  .result-metrics strong {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 620px) and (max-height: 620px) {
+  .home-map-screen,
+  .results {
+    min-height: 680px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+ * 移动端适配 (max-width: 640px)
+ * ----------
+ * 桌面版为 desktop-first, 全 absolute 定位 + 地图铺满背景;
+ * 手机版改为流式布局 + 大触控目标 (≥44px) + 可见输入框.
+ * 遵循 Geist design system 规范:
+ *  - spacing: 4/8/12/16/24
+ *  - control height: 40/48px
+ *  - radius: 6/12/16
+ *  - focus ring: 双层 outline + blue-700
+ *  - motion: 150ms cubic-bezier(0.175, 0.885, 0.32, 1.1)
+ * ============================================================ */
+@media (max-width: 640px) {
+  /* ---- 全局 ---- */
+  html { -webkit-text-size-adjust: 100%; }
+  .topbar {
+    padding: 8px 16px !important;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 96%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .brand span { font-size: 13px !important; }
+  .icon-button { min-width: 44px; min-height: 44px; }
+
+  /* ---- 首页地图 → 流式布局 ---- */
+  .home-map-screen {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 60px);
+    overflow: visible;
+    padding: 16px 16px 24px;
+    gap: 16px;
+  }
+  /* 手机端隐藏台湾整体地图 (点不准, 认知负担大); 用大按钮列表代替.
+     focused 状态例外: 让 SVG 重新显示, 流式紧凑一屏布局.
+     order: 卡片(1) → 地图(2) → 控制组(3), 各组件互不遮挡. */
+  .taiwan-map { display: none; }
+  .home-map-screen.focused {
+    padding: 12px 12px 20px !important;    /* 底 12→20, 让开 Start 按钮 focus ring (WCAG 2.4.11) */
+    gap: 6px !important;
+    min-height: 0 !important;
+    height: calc(100dvh - 60px) !important;
+    max-height: calc(100dvh - 60px) !important;
+    overflow: hidden !important;
+  }
+  .home-map-screen.focused .taiwan-map {
+    display: block;
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;   /* 恢复正常 margin, 真正修复由 carousel display:none 达成 */
+    order: 2;
+    flex: 1 1 0;
+    min-height: 160px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* 底部控制不缩 */
+  .home-map-screen.focused .home-control-deck {
+    order: 3;
+    flex: 0 0 auto;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  /* 路线标题卡: 紧凑一行 + 移到地图上方 */
+  .home-map-screen.focused .route-focus-card {
+    order: 1;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    inset: auto !important;
+    transform: none !important;
+    margin: 44px 0 0 !important;   /* 让开 back-button (absolute, top:12, ~40h) */
+    padding: 10px 14px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+    min-height: 0 !important;
+  }
+  .home-map-screen.focused .route-focus-card .focus-kicker {
+    display: none !important;      /* 紧凑态省略 kicker, 路线名已足够 */
+  }
+  .home-map-screen.focused .focus-route-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .home-map-screen.focused .focus-route-title h2 {
+    font-size: 17px !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .home-map-screen.focused .focus-route-subtitle {
+    font-size: 11px !important;
+    margin-top: 1px !important;
+  }
+  .home-map-screen.focused .focus-line-code {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 11px !important;
+    flex: 0 0 32px;
+  }
+  /* 控制组紧凑化 (order/flex/gap 已在上方 .home-control-deck 规则定义) */
+  .home-map-screen.focused .home-control-deck > * + * {
+    margin-top: 8px !important;
+  }
+  /* focused 时把占位元素 display:none, 避免抢 flex 空间 */
+  .home-map-screen.focused .home-copy { display: none !important; }
+  .home-copy {
+    position: static !important;
+    max-width: 100%;
+    padding: 8px 4px 0;
+    margin: 0 !important;
+    transform: none !important;
+  }
+  .home-copy .eyebrow { font-size: 11px; }
+  .home-copy h1 {
+    font-size: 24px !important;                /* 26→24 收 */
+    line-height: 1.28 !important;
+    margin: 6px 0 !important;
+    text-wrap: balance;
+    hanging-punctuation: allow-end;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+  /* 手机首屏 hero 瘦身: 段落隐藏, 让路线卡片挤上首屏.
+     lede 内容在 focused 状态本就不显示; 未选路线时用户直接看卡片列表最有效. */
+  .home-copy .lede { display: none !important; }
+  .home-instruction { display: none; }
+  /* focused 状态 (选路线后):
+     - home-copy 直接隐藏
+     - 全屏允许纵滚 (control-deck 内容可能超过 vh)
+     - route-carousel 仍显示 (作为顶部快速换线条) */
+  .home-map-screen.focused .home-copy { display: none; }
+  .home-map-screen.focused {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ---- route-carousel → 手机竖排大按钮列表 ---- */
+  .home-control-deck {
+    position: static !important;
+    width: 100% !important;
+    transform: none !important;
+    padding: 0;
+  }
+  .route-carousel {
+    flex-direction: column;
+    gap: 8px;
+    padding: 4px 0 !important;
+    overflow: visible;
+  }
+  .route-button {
+    width: 100%;
+    min-height: 56px !important;
+    padding: 12px 16px !important;
+    border-radius: 12px !important;
+  }
+  .route-button:first-child,
+  .route-button:last-child { margin: 0 !important; }
+  .route-button strong { font-size: 15px !important; }
+  .route-button small { font-size: 11px !important; margin-top: 4px !important; }
+  .route-button.selected { transform: none !important; }
+
+  /* ---- focus-actions 选中路线后的选项面板 ---- */
+  .route-focus-card { position: static !important; padding: 12px 16px !important; }
+  .focus-actions {
+    width: 100% !important;
+    margin: 0 !important;              /* 原 8px 顶 → 0, 由 section gap 统一控制 */
+    padding: 10px !important;           /* 原 16 → 10 收紧 */
+    border-radius: 12px !important;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.04);
+  }
+
+  /* ---- 游戏页 → 地图打底 + 浮层 card ----
+     地图 (.metro-map) 是主视觉, 保留显示; 站名 card 浮在地图上方半透明,
+     键盘弹起时 card 用 --kb-h 上浮避让, 隐藏 input 保持捕获键盘输入.
+     Impeccable v2 精修:
+     - contrast: 打字目标 pending 从 #b6b2aa (1.85:1) 升到 #7a766e (5.2:1)
+     - route-pill 白字对比 fs 11→13, weight 900, letter-spacing 优化
+     - station-card 视觉锚点强化: 左侧色条 (线路色) + 现在到站 / 下一站语义分层
+     - 键盘弹起后 card 底加 1px 硬边分层, 减弱 backdrop-blur 让地图透出更清晰
+     - 打字反馈: current 字符加 accent 色块背景, 打对时脉冲反馈
+  */
+  .game {
+    --game-card-height: auto !important;
+    min-height: 100dvh;
+    padding: 0 !important;
+    position: relative;
+    overflow: hidden;
+  }
+  .metro-map {
+    opacity: 1 !important;
+  }
+  /* 手机端: 路线绘制区仅占中段安全区, 避开顶部 scorebar (0-115) + 底部 station-card (>=683).
+     SVG viewBox 用 preserveAspectRatio=xMidYMid meet, 让路线自动填满 366×560 安全区,
+     不再被压成中央小坨 (原容器铺满 390×844 与路线 aspect 1:1.3 严重不匹配). */
+  .metro-map-container {
+    inset: 120px 12px 175px 12px !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  .game-chrome {
+    position: absolute !important;
+    top: 8px !important;
+    left: 12px !important;
+    right: 12px !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    z-index: 6;
+  }
+  .back-button {
+    min-height: 40px;
+    padding: 8px 12px !important;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 12px !important;
+    background: rgba(255,255,255,0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    /* 与 route-pill 保持基线对齐: 统一 min-height + border-radius + flex-align */
+    display: inline-flex;
+    align-items: center;
+  }
+  .back-button kbd { display: none; }
+  .route-pill {
+    min-height: 40px !important;
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.01em !important;
+    max-width: 74vw;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+    /* 手机端英文长终点站: 允许 2 行 */
+    white-space: normal !important;
+    line-height: 1.2;
+  }
+  .route-pill-name { flex-shrink: 0; }
+  .route-pill-sep { opacity: 0.55; flex-shrink: 0; }
+  .route-pill-dir {
+    /* 长英文站名 (Taipei Nangang Exhibition Center) 词内也可断行, 2 行完整 */
+    min-width: 0;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  /* scorebar: 顶部 4 格紧凑, 数字加粗 tabular-nums */
+  .scorebar {
+    position: absolute !important;
+    top: 56px !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: auto !important;
+    transform: none !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-radius: 12px !important;
+    background: rgba(255,255,255,0.94) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    z-index: 5;
+    overflow: hidden;
+  }
+  .scorebar > div {
+    min-width: 0 !important;
+    padding: 8px 4px !important;
+    border-right: 1px solid rgba(22,22,25,0.08);
+  }
+  .scorebar > div:last-child { border-right: 0; }
+  .scorebar strong {
+    font-size: 20px !important;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .scorebar small {
+    font-size: 10px !important;
+    color: #4d4d4d !important;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .scorebar span { font-size: 10px !important; margin-left: 2px; color: #7d7d7d; }
+
+  /* station-card: 浮在地图底部, 左侧线路色条锚定视觉重心 */
+  .station-card {
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: calc(16px + var(--kb-h, 0px)) !important;
+    width: auto !important;
+    height: auto !important;
+    grid-template-rows: none !important;
+    display: flex !important;
+    flex-direction: column;
+    padding: 12px 16px 8px !important;
+    padding-left: 20px !important;
+    border-radius: 16px !important;
+    gap: 8px;
+    background: rgba(255,253,248,0.96) !important;
+    backdrop-filter: blur(16px) saturate(1.2);
+    border: 1px solid rgba(0,0,0,0.06) !important;
+    box-shadow:
+      0 12px 32px -8px rgba(0,0,0,0.16),
+      0 2px 4px rgba(0,0,0,0.06);
+    z-index: 7;
+    cursor: pointer;
+    transition:
+      transform 200ms cubic-bezier(0.175, 0.885, 0.32, 1.1),
+      bottom 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+  /* 左侧线路色条 ("你在这条线上") */
+  .station-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--active-route);
+    border-radius: 4px 0 0 4px;
+  }
+  .station-card:active { transform: scale(0.996); }
+  .station-meta {
+    padding: 0 !important;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    font-size: 10px !important;
+    align-items: baseline;
+  }
+  .station-meta span:first-child {
+    color: var(--active-route) !important;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    font-size: 11px !important;
+  }
+  .station-meta sup {
+    /* "01/24" 中的 /24 弱化, 表示总站数上下文 */
+    font-size: 8px;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 1px;
+    top: -1px;
+  }
+  .station-meta span:last-child {
+    color: #7d7d7d !important;
+    font-size: 10px !important;
+    text-align: right;
+    letter-spacing: 0.02em;
+  }
+  .station-main {
+    flex-direction: row !important;
+    align-items: baseline !important;
+    justify-content: space-between !important;
+    padding: 2px 0 6px !important;
+    gap: 12px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .station-main > div:first-child {
+    flex: 1;
+    min-width: 0;
+  }
+  .station-main p {
+    font-size: 9px !important;
+    margin: 0 0 4px !important;
+    color: #7d7d7d !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .station-main h2 {
+    /* 中文站名 = 辅助 label (打字目标为主视觉, 中文原名作参考) */
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.01em;
+    line-height: 1.3 !important;
+    color: var(--muted) !important;              /* 从 #171719 → muted, 让位给 typing-target */
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    margin: 0 !important;
+  }
+  .next-station {
+    text-align: right !important;
+    flex-shrink: 0;
+    max-width: 40%;
+  }
+  .next-station span {
+    font-size: 10px !important;
+    color: #7d7d7d;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .next-station strong {
+    font-size: 13px !important;
+    color: #4d4d4d;
+    font-weight: 500;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .next-station b { display: none !important; }
+  .typing-area { padding: 4px 0 2px !important; border-top: 0 !important; }
+  .typing-target {
+    /* 打字目标 = 主视觉 H1 (32px + 600), 玩家应盯的焦点.
+       默认色: 中灰 (未打, WCAG AA 4.5:1 on card).
+       typed: ink 深黑 (已打, 强对比标注进度).
+       current: brand 彩色 + 脉冲 (当前字符). */
+    padding: 4px 0 !important;
+    font-size: clamp(28px, 8vw, 34px) !important;
+    font-weight: 600 !important;
+    flex-wrap: wrap;
+    white-space: normal !important;
+    justify-content: center;
+    line-height: 1.25;
+    color: #6a665e !important;                    /* 未打 = 中灰, AA 5.6:1 */
+    letter-spacing: -0.01em;
+  }
+  .typing-target .typed {
+    color: #171719 !important;
+  }
+  .typing-target .current {
+    color: var(--active-route) !important;
+    background: color-mix(in srgb, var(--active-route) 12%, transparent);
+    border-radius: 4px;
+    padding: 0 2px !important;
+    text-decoration-thickness: 2px !important;
+    text-underline-offset: 0.18em !important;
+    /* current 字符轻脉冲吸引注意 */
+    animation: current-pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes current-pulse {
+    0%, 100% { background: color-mix(in srgb, var(--active-route) 10%, transparent); }
+    50% { background: color-mix(in srgb, var(--active-route) 22%, transparent); }
+  }
+  .line-strip { display: none; }
+  .composition-status {
+    font-size: 11px !important;
+    color: #7d7d7d !important;
+    padding-top: 2px;
+  }
+  .composition-status.is-composing {
+    color: var(--active-route) !important;
+    font-weight: 500;
+  }
+
+  /* ---- mobile-typing-input 手机端保持隐藏 ---- */
+  /* 用户点浮层 .station-card 触发 onClick={onFocusTyping} 通过 focus() 唤起键盘 */
+
+  /* ---- 结算屏 ---- */
+  .result-screen { padding: 16px !important; }
+
+  /* Geist focus ring 已提升到全局 :focus-visible, 用 --focus-ring token */
+
+  /* ============================================================
+   * 键盘弹起态 (body.kb-open, JS 通过 visualViewport 判定 kb>100px)
+   * 508px 可视高: 精简重复 UI, 让站名 / 打字目标区最大化
+   * ------------------------------------------------------------ */
+  body.kb-open .game-chrome {
+    /* 键盘弹起时聚焦打字, 返回按钮 + 路线徽章可暂时隐藏
+       用户失焦或按物理返回键即可退出, 不影响功能 */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 200ms ease, transform 200ms ease;
+  }
+  body.kb-open .scorebar {
+    /* 分数条从 4 格压缩到 2 格 (只留 时间/正确率), 高度减半 */
+    top: 12px !important;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 !important;
+    background: rgba(255,255,255,0.9) !important;
+  }
+  body.kb-open .scorebar > div:nth-child(2),
+  body.kb-open .scorebar > div:nth-child(3) {
+    /* 隐藏"到站"和"速度", 只留"剩余(经过)"和"正确率" */
+    display: none;
+  }
+  body.kb-open .scorebar strong {
+    font-size: 17px !important;
+  }
+  body.kb-open .scorebar > div {
+    padding: 6px 4px !important;
+  }
+  body.kb-open .station-card {
+    /* 键盘弹起 card 上浮时: 顶部间距缩小, 内部更紧凑 */
+    padding: 10px 14px 6px !important;
+    padding-left: 18px !important;
+    gap: 4px;
+  }
+  body.kb-open .station-meta {
+    /* 键盘态隐藏 meta 行 (地址等冗余), 让位打字目标 */
+    display: none !important;
+  }
+  body.kb-open .station-main {
+    padding: 2px 0 4px !important;
+    border-bottom-color: transparent !important;
+  }
+  body.kb-open .station-main p {
+    /* 隐藏 "NOW ARRIVING" 冗余 label, 视觉焦点直接在站名 */
+    display: none !important;
+  }
+  body.kb-open .station-main h2 {
+    font-size: 22px !important;
+    line-height: 1 !important;
+  }
+  body.kb-open .next-station {
+    max-width: 38%;
+  }
+  body.kb-open .next-station span {
+    /* 隐藏 "下一站" label, 只留站名 (arrow → 前缀替代) */
+    display: none;
+  }
+  body.kb-open .next-station strong::before {
+    content: "→ ";
+    color: var(--active-route);
+    opacity: 0.6;
+  }
+  body.kb-open .next-station strong {
+    font-size: 12px !important;
+    color: #7d7d7d;
+  }
+  body.kb-open .typing-target {
+    /* 打字目标略缩以适配窄视口, 保持可读 */
+    font-size: clamp(18px, 5vw, 22px) !important;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+  body.kb-open .composition-status {
+    font-size: 10px !important;
+    padding-top: 0;
+  }
+}
