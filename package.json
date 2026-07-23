@@ -30,7 +30,7 @@
   "devDependencies": {
     "@playwright/test": "^1.61.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "prettier": "3.9.5",
+    "prettier": "3.9.6",
     "topojson": "^3.0.2",
     "vite": "^6.4.3"
   }
